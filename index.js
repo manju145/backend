@@ -23,7 +23,7 @@ console.log("Connect to the DB")
     }
     catch(err){
 console.log(err)
-console.log("cannot connect to the DB")
+console.log("can not connect to the DB")
     }
     console.log(`Server is runing at port ${process.env.port}`);
 })
