@@ -1,20 +1,23 @@
-const express = require("express");
-const {connection} = require("./db")
-const {userRouter} = require("./routes/User.routes")
-
-const {auth} = require("./middleware/auth.middleware")
-const {noteRouter} =require("./routes/Notes.route")
-require("dotenv").config()
-
-const app = express();
-
-app.use(express.json());
-app.use("/users",userRouter)
+const express = require("express")
+const cors = require("cors")
+const { connection } = require("./db")
+const userRouter = require("../Backend/routes/user")
+const inventRouter = require("../Backend/routes/Postdata")
+const SpecsRouter = require("../Backend/routes/auth")
 
 
-app.use(auth)
-app.use("/notes",noteRouter)
+const app = express()
+app.use(express.json())
+app.use(cors())
 
+
+app.use("/user",userRouter)
+app.use("/invent",inventRouter)
+app.use("/specs",SpecsRouter)
+
+app.get("/",(req,res)=>{
+    res.send("Hello World")
+})
 
 app.listen(async()=>{
     try{
@@ -27,6 +30,7 @@ console.log("can not connect to the DB")
     }
     console.log(`Server is runing at port ${process.env.port}`);
 })
+
 
 // app.listen(8080,async()=>{
 //     try{
