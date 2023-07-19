@@ -78,7 +78,6 @@ inventRouter.get('/', async (req, res) => {
   }
 });
 
-
 inventRouter.patch('/:id', async (req, res) => {
   try {
     const { id } = req.params;
